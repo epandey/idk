@@ -1,0 +1,28 @@
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+}
+
+.bodytitle-wrapper {
+    font-weight: bold;
+}
+
+.CardView {
+    min-width: 25%;
+}
+
+.CardView-main {
+    width: 100%  !important;
+    max-width: 100% !important;
+    background-color: whitesmoke;
+}
+
+.circle-red {
+    color: red;
+}
+
+.circle-green {
+    color: green;
+}

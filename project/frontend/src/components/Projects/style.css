@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+table {
+  width: 100%;
+  border: 1px solid;
+}
+
+th,
+td {
+  border: 1px solid ;
+  padding: 0.3rem;
+}
+
+th span {
+  margin-right: 1rem;
+}
+
+input {
+  -webkit-appearance: none;
+  border: 1px solid gray;
+  /* padding: 0.3rem; */
+  width: 70%;
+  max-width: 70%;
+  background: #ffffff;
+}
+
+.pagination {
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid ;
+  padding: 0.5rem;
+}
+.tableRow:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+  
+}
+.tablecell {
+padding:0px;
+margin:0px;
+}
+.Tablecell{
+  padding:0px;
+  margin:0px;
+}
