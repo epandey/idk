@@ -44,7 +44,6 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import { makeStyles } from "@mui/styles";
 import "./style.css";
 
 const PricingElements = () => {

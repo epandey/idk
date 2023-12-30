@@ -16,38 +16,38 @@ import {
   MenuItem,
   TablePagination,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+// import { makeStyles } from "@mui/styles";
 
 // Custom styles for the components
-const useStyles = makeStyles({
-  title: {
-    textAlign: "center", // Center the title text
-    backgroundColor: "#467eac", // Blue background color
-    color: "white", // White text color
-    padding: "10px 0", // Some padding for aesthetic spacing
-  },
-  headerCell: {
-    fontWeight: "bold", // Make the header text bold
-    background: "#467EAC",
-    color: "white",
-  },
+// const useStyles = makeStyles({
+//   title: {
+//     textAlign: "center", // Center the title text
+//     backgroundColor: "#467eac", // Blue background color
+//     color: "white", // White text color
+//     padding: "10px 0", // Some padding for aesthetic spacing
+//   },
+//   headerCell: {
+//     fontWeight: "bold", // Make the header text bold
+//     background: "#467EAC",
+//     color: "white",
+//   },
 
-  hoverRow: {
-    "&:hover": {
-      backgroundColor: "#f9f9f9", // Or any color for hover state
-      // If you want to expand the row in terms of height, you can add:
-      // height: '70px', // Adjust the height as needed
-      // transition: 'height 0.3s ease', // For a smooth transition
-      cursor: "pointer", // Change cursor to pointer on hover
-    },
-  },
-});
+//   hoverRow: {
+//     "&:hover": {
+//       backgroundColor: "#f9f9f9", // Or any color for hover state
+//       // If you want to expand the row in terms of height, you can add:
+//       // height: '70px', // Adjust the height as needed
+//       // transition: 'height 0.3s ease', // For a smooth transition
+//       cursor: "pointer", // Change cursor to pointer on hover
+//     },
+//   },
+// });
 
 export const PrintPopup = ({ open, onClose, data, handleExport }) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
   // Use the custom styles
-  const classes = useStyles();
+  // const classes = useStyles();
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(event.target.value);
     setPage(0); // Reset to the first page
@@ -88,9 +88,9 @@ export const PrintPopup = ({ open, onClose, data, handleExport }) => {
 
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-      <DialogTitle className={classes.title}>
+      {/* <DialogTitle className={classes.title}>
         Print Pricing Elements
-      </DialogTitle>
+      </DialogTitle> */}
       <DialogContent>
         <Select value={rowsPerPage} onChange={handleChangeRowsPerPage}>
           {[10, 25, 50, 100].map((size) => (
@@ -102,7 +102,7 @@ export const PrintPopup = ({ open, onClose, data, handleExport }) => {
         <TableContainer component={Paper} style={{ marginTop: "20px" }}>
           <Table>
             <TableHead>
-              <TableRow>
+              {/* <TableRow>
                 <TableCell className={classes.headerCell}>PE#</TableCell>
                 <TableCell className={classes.headerCell}>Title</TableCell>
                 <TableCell className={classes.headerCell}>
@@ -144,11 +144,12 @@ export const PrintPopup = ({ open, onClose, data, handleExport }) => {
                   WS CO Number
                 </TableCell>
                 <TableCell className={classes.headerCell}>PE Notes</TableCell>
-              </TableRow>
+              </TableRow> */}
             </TableHead>
             <TableBody>
               {displayData.map((row, index) => (
-                <TableRow key={index} className={classes.hoverRow}>
+                // <TableRow key={index} className={classes.hoverRow}>
+                <TableRow key={index}>
                   <TableCell>{row.PE}</TableCell>
                   <TableCell>{row.title}</TableCell>
                   <TableCell>{row.briefDescription}</TableCell>

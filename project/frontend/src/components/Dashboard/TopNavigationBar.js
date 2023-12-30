@@ -20,18 +20,30 @@ import AddProject from "../Projects/AddProject";
 import AddProjectTwo from "../Projects/AddProjectTwo";
 import FindProject from "../../pages/FindProject";
 import FindProjectPaged from "../../pages/FindProjectPaged";
-import TasksSystem from "../Projects/TasksSystem";
 import miller_logo from "../Dashboard/miller_logo.png";
 import Logout from "../auth/Logout";
-import Login from "../auth/Login";
+import Login from "../auth/login";
 import Viewproject from "../Projects/viewproject";
-import Invoices from "../../pages/Invoices";
+import ControlledTreeView from "../Sidebar/ControlledTreeView";
 
-export default function ButtonAppBar() {
+function currentSideBar(activeSideBar) {
+  console.log("currentSideBar called- ", activeSideBar);
+
+  switch (activeSideBar) {
+    case "projects":
+      console.log("Side Navigation - Projects");
+      return <ControlledTreeView />;
+
+    default:
+      return <></>;
+  }
+}
+
+export default function TopNavigationBar({ activeSideBar }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [logoRotation, setLogoRotation] = React.useState(0);
 
-  console.log("ButtonAppBar is rendering");
+  console.log("Top navigation bar- ", activeSideBar);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,12 +54,6 @@ export default function ButtonAppBar() {
 
   const handleLogoClick = () => {
     setLogoRotation((rotation) => rotation + 90);
-  };
-  const isProjectsActive = (match, location) => {
-    return (
-      location.pathname.includes("viewproject") ||
-      location.pathname.includes("projects")
-    );
   };
 
   return (
@@ -75,11 +81,7 @@ export default function ButtonAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              marginRight: "50px",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-            }}
+            sx={{ marginRight: "50px", fontFamily: "Helvetica" }}
           >
             <NavLink
               to="/dashboard"
@@ -102,9 +104,7 @@ export default function ButtonAppBar() {
                   textDecoration: "none",
                   color: "inherit",
                   fontFamily: "Helvetica",
-                  fontWeight: "bold",
                 }}
-                isActive={isProjectsActive}
                 activeClassName="active"
               >
                 Projects
@@ -123,11 +123,7 @@ export default function ButtonAppBar() {
               <MenuItem onClick={handleClose}>
                 <NavLink
                   to="/projects/addproject"
-                  style={{
-                    textDecoration: "none",
-                    color: "inherit",
-                    fontWeight: "bold",
-                  }}
+                  style={{ textDecoration: "none", color: "inherit" }}
                   activeClassName="active"
                 >
                   Add Projects
@@ -136,11 +132,7 @@ export default function ButtonAppBar() {
               <MenuItem onClick={handleClose}>
                 <NavLink
                   to="/projects/findproject"
-                  style={{
-                    textDecoration: "none",
-                    color: "inherit",
-                    fontWeight: "bold",
-                  }}
+                  style={{ textDecoration: "none", color: "inherit" }}
                   activeClassName="active"
                 >
                   Find Projects
@@ -152,11 +144,7 @@ export default function ButtonAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              marginRight: "50px",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-            }}
+            sx={{ marginRight: "50px", fontFamily: "Helvetica" }}
           >
             <NavLink
               to="/proposals"
@@ -169,11 +157,7 @@ export default function ButtonAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              marginRight: "50px",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-            }}
+            sx={{ marginRight: "50px", fontFamily: "Helvetica" }}
           >
             <NavLink
               to="/financial"
@@ -186,14 +170,10 @@ export default function ButtonAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              marginRight: "50px",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-            }}
+            sx={{ marginRight: "50px", fontFamily: "Helvetica" }}
           >
             <NavLink
-              to="/TasksSystem"
+              to="/tasks"
               style={{ textDecoration: "none", color: "inherit" }}
               activeClassName="active"
             >
@@ -216,11 +196,7 @@ export default function ButtonAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              marginRight: "50px",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-            }}
+            sx={{ marginRight: "50px", fontFamily: "Helvetica" }}
           >
             <NavLink
               to="/tools"
@@ -233,11 +209,7 @@ export default function ButtonAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{
-              marginRight: "50px",
-              fontFamily: "Helvetica",
-              fontWeight: "bold",
-            }}
+            sx={{ marginRight: "50px", fontFamily: "Helvetica" }}
           >
             <NavLink
               to="/users"
@@ -251,7 +223,7 @@ export default function ButtonAppBar() {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, fontFamily: "Helvetica", fontWeight: "bold" }}
+            sx={{ flexGrow: 1, fontFamily: "Helvetica" }}
           ></Typography>
           <NavLink
             to="/logout"
@@ -263,24 +235,23 @@ export default function ButtonAppBar() {
         </Toolbar>
       </AppBar>
 
-      <Routes>
-        <Route exact path="/login" element={<login />} />
+      {/* {currentSideBar(activeSideBar)} */}
+      {/* <ControlledTreeView /> */}
+
+      {/* <Routes>
+        <Route path="/" element={<Login />} />
+        <Route exact path="/login" element={<Login />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route path="/proposals" />
         <Route path="/financial" element={<FinancialContent />} />
         <Route path="/projects/addproject" element={<AddProjectTwo />} />
         <Route path="/projects/findproject" element={<FindProjectPaged />} />
-        <Route
-          path="/projects/viewproject/:projectId"
-          element={<Viewproject />}
-        />
-        <Route path="/TasksSystem" element={<TasksSystem />} />
-        <Route path="/invoices" element={<Invoices />} />
-
+        <Route path="/projects/viewproject" element={<Viewproject />} />
+        <Route path="/tasks" />
         <Route path="/tools" />
         <Route path="/users" />
         <Route path="/logout" element={<Logout />} />
-      </Routes>
+      </Routes> */}
     </Box>
   );
 }

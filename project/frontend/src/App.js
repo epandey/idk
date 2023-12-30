@@ -1,43 +1,43 @@
-import './App.css';
-import SideBar from './components/Sidebar/SideBar';
-import React, { Fragment, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
-import Dashboard from './components/Dashboard/Dashboard';
-import Users from './pages/Users';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
-import FindProject from './pages/FindProject';
-import AddProject from './components/Projects/AddProject';
-import Reports from './pages/Reports';
-import Order from './pages/Order';
-import Saved from './pages/Saved';
-import Tools from './pages/Tools';
-import Login from './components/auth/Login';
-import Logout from './components/auth/Logout';
-import TasksSystem from './components/Projects/TasksSystem'; // Your component
-import Alert from './components/layouts/Alert';
-import PrivateRoute from './components/routing/PrivateRoute';
-import Posts from './components/posts/Posts';
+import "./App.css";
+import SideBar from "./components/Sidebar/SideBar";
+import React, { Fragment, useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Users from "./pages/Users";
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import FindProject from "./pages/FindProject";
+import AddProject from "./components/Projects/AddProject";
+import Reports from "./pages/Reports";
+import Order from "./pages/Order";
+import Saved from "./pages/Saved";
+import Tools from "./pages/Tools";
+import Login from "./components/auth/Login";
+import Logout from "./components/auth/Logout";
+import Invoices from "./pages/Invoices";
+import TasksSystem from "./components/Projects/TasksSystem"; // Your component
+import Alert from "./components/layouts/Alert";
+import PrivateRoute from "./components/routing/PrivateRoute";
+import Posts from "./components/posts/Posts";
 // import Example from './components/Example';
-import ButtonAppBar from './components/Dashboard/ButtonAppBar';
-import ControlledTreeView from './components/Sidebar/ControlledTreeView';
-import Navbar from './components/layout/Navbar';
+import ButtonAppBar from "./components/Dashboard/ButtonAppBar";
+import ControlledTreeView from "./components/Sidebar/ControlledTreeView";
+import Navbar from "./components/layout/Navbar";
 
 // Redux
-import { Provider } from 'react-redux';
-import store from './store';
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
-import { LOGOUT } from './actions/types';
-import FindProjectPaged from './pages/FindProjectPaged';
-import viewproject from './components/Projects/viewproject';
-import Test from './components/test';
-import AddProjectOne from './components/Projects/AddProjectOne';
-import AddProjectTwo from './components/Projects/AddProjectTwo';
-
+import { Provider } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
+import { LOGOUT } from "./actions/types";
+import FindProjectPaged from "./pages/FindProjectPaged";
+import viewproject from "./components/Projects/viewproject";
+import Test from "./components/test";
+import AddProjectOne from "./components/Projects/AddProjectOne";
+import AddProjectTwo from "./components/Projects/AddProjectTwo";
 
 // doing the sidebar thing
 const SidebarLayout = () => (
@@ -66,14 +66,14 @@ function App() {
     store.dispatch(loadUser());
 
     // log user out from all tabs if they log out in one tab
-    window.addEventListener('storage', () => {
+    window.addEventListener("storage", () => {
       if (!localStorage.token) store.dispatch({ type: LOGOUT });
     });
   }, []);
 
   //const state = store.getState();
   console.log(
-    'State in App.js is - ' +
+    "State in App.js is - " +
       JSON.stringify(store.getState().auth.isAuthenticated)
   );
 
@@ -118,27 +118,31 @@ function App() {
   // }
 
   let pathName = window.location.pathname;
-  let arr = pathName.toString().split('/');
+  let arr = pathName.toString().split("/");
   let currentPath = arr[arr.length - 1];
-  console.log("current path:",currentPath)
-  
-  
-  if (currentPath ==='dashboard' || currentPath ==='addproject' || currentPath==='findproject' ||currentPath==='TasksSystem'){
-  return (
-    <Provider store={store}>
-      <Router>
-        
-        {/* <React.Fragment>
+  console.log("current path:", currentPath);
+
+  if (
+    currentPath === "dashboard" ||
+    currentPath === "addproject" ||
+    currentPath === "findproject" ||
+    currentPath === "TasksSystem" ||
+    currentPath === "invoices"
+  ) {
+    return (
+      <Provider store={store}>
+        <Router>
+          {/* <React.Fragment>
           <Navbar />
         </React.Fragment> */}
-        <ButtonAppBar>
-          <Login/>
-        </ButtonAppBar>
-       
-        {/* <ControlledTreeView></ControlledTreeView> */}
-        
-        {currentPath.length > 0}
-        {/* <Routes>
+          <ButtonAppBar>
+            <Login />
+          </ButtonAppBar>
+
+          {/* <ControlledTreeView></ControlledTreeView> */}
+
+          {currentPath.length > 0}
+          {/* <Routes>
           <Route element={<SidebarLayout />}> 
             <Route index element={<Home />} />
             <Route
@@ -157,20 +161,18 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<> not found</>} />
         </Routes> */}
-      </Router>
-    </Provider>
-  );
-}
-else if(currentPath ==='login') {
-  return (
-    <Provider store={store}>
-      <Router>
-        
-        {/* <React.Fragment>
+        </Router>
+      </Provider>
+    );
+  } else if (currentPath === "login") {
+    return (
+      <Provider store={store}>
+        <Router>
+          {/* <React.Fragment>
           <Navbar />
         </React.Fragment> */}
-        <Login/>
-        {/* <ButtonAppBar>
+          <Login />
+          {/* <ButtonAppBar>
         <Routes>
             <Route path="/" element={<Login />} />
             
@@ -225,8 +227,8 @@ else if(currentPath ==='login') {
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </ButtonAppBar> */}
-        {/* <ControlledTreeView></ControlledTreeView> */}
-        {/* <SideBar >
+          {/* <ControlledTreeView></ControlledTreeView> */}
+          {/* <SideBar >
           <Routes>
             <Route path="/" element={<Login />} />
             
@@ -281,9 +283,9 @@ else if(currentPath ==='login') {
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </SideBar> */}
-        
-        {currentPath.length > 0  }
-        {/* <Routes>
+
+          {currentPath.length > 0}
+          {/* <Routes>
           <Route element={<SidebarLayout />}>
             <Route index element={<Home />} />
             <Route
@@ -302,84 +304,86 @@ else if(currentPath ==='login') {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<> not found</>} />
         </Routes> */}
-      </Router>
-    </Provider>
-  );
-}
-else{
-  return (
-    <Provider store={store}>
-      <Router>
-        
-        {/* <React.Fragment>
+        </Router>
+      </Provider>
+    );
+  } else {
+    return (
+      <Provider store={store}>
+        <Router>
+          {/* <React.Fragment>
           <Navbar />
         </React.Fragment> */}
-        <ButtonAppBar>
-        <Routes>
-            <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/dashboard"
-              element={<PrivateRoute component={Dashboard} />}
-            />
-             <Route
-              path="/TasksSystem"
-              element={<PrivateRoute component={TasksSystem} />}
-            />
-            <Route path="/users" element={<PrivateRoute component={Users} />} />
-            <Route
-              path="/reports"
-              element={<PrivateRoute component={Reports} />}
-            />
-            <Route
-              path="/projects"
-              element={<PrivateRoute component={Projects} />}
-            />
-            <Route
-              path="/projects/addproject"
-              element={<PrivateRoute component={AddProjectTwo} />}
-            />
-            <Route
-              path="/projects/addprojectone"
-              element={<PrivateRoute component={AddProjectOne} />}
-            />
-            <Route
-              path="/projects/addprojecttwo"
-              element={<PrivateRoute component={AddProjectTwo} />}
-            />
-            <Route
-              path="/projects/findproject"
-              element={<PrivateRoute component={FindProjectPaged} />}
-            />
-             <Route
-              path="/projects/viewproject"
-              element={<PrivateRoute component={FindProjectPaged} />}
-            />
-            <Route
-              path="dashboard"
-              element={<PrivateRoute component={Dashboard} />}
-            />
-            <Route
-              path="/projects/findprojectpaged"
-              element={<FindProjectPaged />}
-            />
-            {/* <Route
+          <ButtonAppBar>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/dashboard"
+                element={<PrivateRoute component={Dashboard} />}
+              />
+              <Route
+                path="/TasksSystem"
+                element={<PrivateRoute component={TasksSystem} />}
+              />
+              <Route
+                path="/users"
+                element={<PrivateRoute component={Users} />}
+              />
+              <Route
+                path="/reports"
+                element={<PrivateRoute component={Reports} />}
+              />
+              <Route
+                path="/projects"
+                element={<PrivateRoute component={Projects} />}
+              />
+              <Route
+                path="/projects/addproject"
+                element={<PrivateRoute component={AddProjectTwo} />}
+              />
+              <Route
+                path="/projects/addprojectone"
+                element={<PrivateRoute component={AddProjectOne} />}
+              />
+              <Route
+                path="/projects/addprojecttwo"
+                element={<PrivateRoute component={AddProjectTwo} />}
+              />
+              <Route
+                path="/projects/findproject"
+                element={<PrivateRoute component={FindProjectPaged} />}
+              />
+              <Route
+                path="/projects/viewproject"
+                element={<PrivateRoute component={FindProjectPaged} />}
+              />
+              <Route
+                path="dashboard"
+                element={<PrivateRoute component={Dashboard} />}
+              />
+              <Route
+                path="/projects/findprojectpaged"
+                element={<FindProjectPaged />}
+              />
+              {/* <Route
               path="/viewproject"
               element={<PrivateRoute component={ViewProject} />}
             /> */}
-            <Route path="/TasksSystem" element={Dashboard} />
+              <Route path="/TasksSystem" element={Dashboard} />
 
-            <Route path="/order" element={<Order />} />
-            <Route path="/saved" element={<Saved />} />
-            <Route path="/tools" element={<Tools />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="*" element={<> not found</>} />
-            <Route path="/logout" element={<Logout />} />
-          </Routes>
-        </ButtonAppBar>
-        <ControlledTreeView></ControlledTreeView>
-        {/* <SideBar >
+              <Route path="/order" element={<Order />} />
+              <Route path="/saved" element={<Saved />} />
+              <Route path="/tools" element={<Tools />} />
+              <Route path="/invoices" element={<Invoices />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/test" element={<Test />} />
+              <Route path="*" element={<> not found</>} />
+              <Route path="/logout" element={<Logout />} />
+            </Routes>
+          </ButtonAppBar>
+          <ControlledTreeView></ControlledTreeView>
+          {/* <SideBar >
           <Routes>
             <Route path="/" element={<Login />} />
             
@@ -434,9 +438,9 @@ else{
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </SideBar> */}
-        
-        {currentPath.length > 0 }
-        {/* <Routes>
+
+          {currentPath.length > 0}
+          {/* <Routes>
           <Route element={<SidebarLayout />}>
             <Route index element={<Home />} />
             <Route
@@ -455,10 +459,10 @@ else{
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<> not found</>} />
         </Routes> */}
-      </Router>
-    </Provider>
-  );
-}
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;

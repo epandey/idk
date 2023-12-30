@@ -1,0 +1,41 @@
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 10px;
+  background: #ffffff; /* or any color that matches your layout */
+  border-bottom: 1px solid #ddd; /* to match the screenshot style */
+}
+
+.filters select {
+  margin-right: 20px; /* Space between the dropdown and the first checkbox */
+}
+
+.filters label {
+  margin-right: 10px; /* Space between checkboxes */
+  display: flex;
+  align-items: center; /* Vertically center the text next to the checkbox */
+}
+
+/* Style the button at the end */
+.save-button {
+  margin-left: auto; /* Pushes the button to the right */
+  padding: 10px 20px;
+  background-color: #4caf50; /* Green background as per the screenshot */
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+/* You may need additional styles to reset checkbox appearance */
+.filters input[type="checkbox"] {
+  -webkit-appearance: checkbox; /* This line is for Safari */
+  appearance: checkbox; /* This line is for other browsers */
+}
+
+.MuiTableContainer-root {
+  width: 40%;
+  margin: 0 auto;
+  /* Other styles for the table container */
+}

@@ -1,20 +1,21 @@
-import { combineReducers } from 'redux';
-import alert from './alert';
-import auth from './auth';
-import profile from './profile';
-import projects from './projects';
-import post from './post';
-import project from './project';
-import projectItems from './projectItems';
-import warehouses from './warehouses';
-import projectClasses from './projectClasses';
-import managers from './managers';
-import projectStages from './projectStages';
-import projectStatuses from './projectStatuses';
-import projectTypes from './projectTypes';
-import customerApprovals from './customerApprovals';
-import projectTasks from './projectTasks';
-import TasksSystem from './TasksSystem';
+import { combineReducers } from "redux";
+import alert from "./alert";
+import auth from "./auth";
+import profile from "./profile";
+import projects from "./projects";
+import post from "./post";
+import project from "./project";
+import projectItems from "./projectItems";
+import projectChangeOrder from "./projectChangeOrder";
+import warehouses from "./warehouses";
+import projectClasses from "./projectClasses";
+import managers from "./managers";
+import projectStages from "./projectStages";
+import projectStatuses from "./projectStatuses";
+import projectTypes from "./projectTypes";
+import customerApprovals from "./customerApprovals";
+import projectTasks from "./projectTasks";
+import TasksSystem from "./TasksSystem";
 
 export default combineReducers({
   alert,
@@ -24,6 +25,7 @@ export default combineReducers({
   post,
   project,
   projectItems,
+  projectChangeOrder,
   warehouses,
   projectClasses,
   managers,
