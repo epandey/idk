@@ -44,7 +44,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-// import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@mui/styles";
 import "./style.css";
 
 const PricingElements = () => {
@@ -321,38 +321,120 @@ const PricingElements = () => {
     <>
       <Card style={cardStyle}>
         <CardHeader
-          style={{ background: "#467eac", color: "white" }}
+          style={{
+            background: "#467eac",
+            color: "white",
+            display: "flex", // Use flexbox
+            justifyContent: "space-between", // Center align items horizontally
+            alignItems: "center", // Center align items vertically
+            padding: "16px", // Add some padding for aesthetics
+          }}
           title={
-            <h1
+            // <h1
+            //   style={{
+            //     fontSize: "18px",
+            //     margin: "-6px",
+            //     fontFamily: "Helvetica",
+            //   }}
+            // >
+            //   Pricing Elements
+            // </h1>
+            <div
               style={{
-                fontSize: "18px",
-                margin: "-6px",
-                fontFamily: "Helvetica",
+                display: "flex",
+                flexDirection: "column",
+                marginRight: "20px",
               }}
             >
-              Pricing Elements
-            </h1>
+              <FormControl sx={{ m: 1, width: selectWidth }}>
+                <InputLabel
+                  id="demo-multiple-name-label"
+                  style={{
+                    position: "absolute",
+                    top: "-10px",
+                    height: "20px",
+                    color: "white",
+                    align: "center",
+                  }}
+                >
+                  Status Filter
+                </InputLabel>
+                <Select
+                  style={{ height: "50px", textAlign: "top", color: "white" }}
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={status}
+                  onChange={handleChange}
+                  input={
+                    <OutlinedInput
+                      label="Status Filter"
+                      style={{ width: "150px", height: "30px", color: "white" }}
+                    />
+                  }
+                  //   MenuProps={MenuProps}
+                  fullWidth
+                >
+                  {names.map((name) => (
+                    <MenuItem
+                      key={name}
+                      value={name}
+                      //   style={getStyles(name, personName, theme)}
+                    >
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
           }
           action={
-            <>
+            <div
+              style={{
+                display: "flex",
+                marginLeft: "20px",
+                alignItems: "center",
+              }}
+            >
               <Button
                 variant="contained"
                 onClick={handleAddPricingElementClick}
-                style={{ marginLeft: "0.4rem", textTransform: "none" }}
+                style={{
+                  marginLeft: "0.4rem",
+                  textTransform: "none",
+                  marginRight: "10px",
+                  marginTop: "0.8rem",
+                  paddingTop: "8px",
+                  paddingBottom: "8px",
+                }}
               >
                 Add Pricing Element
               </Button>
               <Button
                 variant="contained"
                 onClick={handleEditButtonClick}
-                style={{ marginLeft: "0.4rem", textTransform: "none" }}
+                style={{
+                  marginLeft: "0.4rem",
+                  textTransform: "none",
+                  marginRight: "4px",
+                  marginTop: "0.8rem",
+                  paddingTop: "8px",
+                  paddingBottom: "8px",
+                }}
               >
                 Edit Pricing Element
               </Button>
               <Button
                 variant="contained"
                 onClick={handlePrintButtonClick}
-                style={{ marginLeft: "0.4rem", textTransform: "none" }}
+                style={{
+                  marginLeft: "0.4rem",
+                  textTransform: "none",
+                  marginRight: "4px",
+                  marginTop: "0.8rem",
+                  paddingTop: "8px",
+                  paddingBottom: "8px",
+                }}
               >
                 Print Pricing Elements
               </Button>
@@ -362,11 +444,11 @@ const PricingElements = () => {
                 data={changeOrders} // Assuming this is your table data
                 handleExport={handlePrint}
               />
-            </>
+            </div>
           }
         ></CardHeader>
         <CardContent>
-          <FormControl sx={{ m: 1, width: selectWidth }}>
+          {/* <FormControl sx={{ m: 1, width: selectWidth }}>
             <InputLabel
               id="demo-multiple-name-label"
               style={{
@@ -402,7 +484,7 @@ const PricingElements = () => {
                 </MenuItem>
               ))}
             </Select>
-          </FormControl>
+          </FormControl> */}
           <TableContainer
             component={Paper}
             style={{ ...tableContainerStyle, width: "1500px" }}
@@ -474,7 +556,7 @@ const PricingElements = () => {
                     align="left"
                     className="table-column"
                   >
-                    Invoice Status
+                    AP/AR Status
                   </TableCell>
                   <TableCell
                     style={{
